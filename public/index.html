@@ -80,7 +80,7 @@
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="img/logo.png" alt="Logo" width="70" height="70" class="me-2"> Immersive Aguachica
+      <img src="../img/logo.png" alt="Logo" width="70" height="70" class="me-2"> Immersive Aguachica
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
       <span class="navbar-toggler-icon"></span>
@@ -99,7 +99,7 @@
 <!-- HERO -->
 <header class="hero" id="inicio">
   <div class="container">
-    <img src="img/logo.png" alt="Logo" width="500" class="mb-4">
+    <img src="../img/logo.png" alt="Logo" width="500" class="mb-4">
     <h1>Immersive Aguachica</h1>
     <p>Turismo que se vive en 3D. Explora lugares emblemáticos desde cualquier parte.</p>
     <a href="#lugares" class="btn btn-principal btn-lg mt-3">Explorar Lugares</a>
@@ -112,7 +112,7 @@
   <div class="row text-center mt-4">
     <div class="col-md-4 mb-4">
       <div class="card card-custom">
-        <img src="img/sanroque.jpg" class="card-img-top" alt="Lugar 1">
+        <img src="../img/sanroque.jpg" class="card-img-top" alt="Lugar 1">
         <div class="card-body">
           <h5 class="card-title">Parque San Roque</h5>
           <p class="card-text">Historia, cultura y arquitectura de Aguachica.</p>
@@ -121,7 +121,7 @@
     </div>
     <div class="col-md-4 mb-4">
       <div class="card card-custom">
-        <img src="img/morrocoy.png" class="card-img-top" alt="Lugar 2">
+        <img src="../img/morrocoy.png" class="card-img-top" alt="Lugar 2">
         <div class="card-body">
           <h5 class="card-title">Parque Morrocoy</h5>
           <p class="card-text">Un ícono tradicional de Aguachica</p>
@@ -153,22 +153,24 @@
 
 <!-- CONTACTO -->
 <section class="container py-5" id="contacto">
-  <h2 class="section-title">Contáctanos</h2>
-  <form>
-    <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
-    </div>
-    <div class="mb-3">
-      <label for="correo" class="form-label">Correo electrónico</label>
-      <input type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com">
-    </div>
-    <div class="mb-3">
-      <label for="mensaje" class="form-label">Mensaje</label>
-      <textarea class="form-control" id="mensaje" rows="4"></textarea>
-    </div>
-    <button type="submit" class="btn btn-principal">Enviar</button>
-  </form>
+  <div class="container mt-5">
+    <h2 class="text-center text-success">Contáctanos</h2>
+    <form action="/contacto" method="POST" class="mt-4">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="correo" name="correo" required>
+      </div>
+      <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Enviar</button>
+    </form>
+  </div>
 </section>
 
 <!-- FOOTER -->
