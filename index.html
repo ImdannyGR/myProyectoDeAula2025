@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Immersive Aguachica</title>
+  <!-- Si lo pones en public/images/ -->
+<link rel="icon" type="image/png" href="img/favicon.png">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     :root {
@@ -82,9 +85,16 @@
     <a class="navbar-brand" href="#">
       <img src="img/logo.png" alt="Logo" width="70" height="70" class="me-2"> Immersive Aguachica
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+   <button 
+  class="navbar-toggler" 
+  type="button" 
+  data-bs-toggle="collapse" 
+  data-bs-target="#navmenu"
+  title="Mostrar menú"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
+
     <div class="collapse navbar-collapse" id="navmenu">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
@@ -108,8 +118,8 @@
 
 <!-- LUGARES -->
 <section class="container" id="lugares">
-  <h2 class="section-title">Lugares Emblemáticos</h2>
-  <div class="row text-center mt-4">
+  <h2 class="section-title text-center text-success">Lugares Emblemáticos</h2>
+  <div class="row justify-content-center mt-4">
     <div class="col-md-4 mb-4">
       <div class="card card-custom">
         <img src="img/sanroque.jpg" class="card-img-top" alt="Lugar 1">
@@ -125,15 +135,6 @@
         <div class="card-body">
           <h5 class="card-title">Parque Morrocoy</h5>
           <p class="card-text">Un ícono tradicional de Aguachica</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card card-custom">
-        <img src="ruta/lugar3.jpg" class="card-img-top" alt="Lugar 3">
-        <div class="card-body">
-          <h5 class="card-title">Cerro de la Cruz</h5>
-          <p class="card-text">El mirador natural más impresionante de la región.</p>
         </div>
       </div>
     </div>
