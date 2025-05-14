@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Immersive Aguachica</title>
-  <!-- Si lo pones en public/images/ -->
-<link rel="icon" type="image/png" href="img/favicon.png">
-
+  <link rel="icon" type="image/png" href="img/favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     :root {
@@ -35,6 +33,12 @@
       color: var(--gris-texto);
       padding: 120px 0 80px;
       text-align: center;
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 80px 0 40px;
+      }
     }
 
     .hero h1 {
@@ -75,6 +79,10 @@
       padding: 20px 0;
       text-align: center;
     }
+
+     .logo-ajustada {
+    max-width: 300px;
+  }
   </style>
 </head>
 <body>
@@ -85,15 +93,9 @@
     <a class="navbar-brand" href="#">
       <img src="img/logo.png" alt="Logo" width="70" height="70" class="me-2"> Immersive Aguachica
     </a>
-   <button 
-  class="navbar-toggler" 
-  type="button" 
-  data-bs-toggle="collapse" 
-  data-bs-target="#navmenu"
-  title="Mostrar menú"
->
-  <span class="navbar-toggler-icon"></span>
-</button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" title="Mostrar menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="collapse navbar-collapse" id="navmenu">
       <ul class="navbar-nav ms-auto">
@@ -109,7 +111,7 @@
 <!-- HERO -->
 <header class="hero" id="inicio">
   <div class="container">
-    <img src="img/logo.png" alt="Logo" width="500" class="mb-4">
+   <img src="img/logo.png" alt="Logo" class="mb-4 img-fluid logo-ajustada">
     <h1>Immersive Aguachica</h1>
     <p>Turismo que se vive en 3D. Explora lugares emblemáticos desde cualquier parte.</p>
     <a href="#lugares" class="btn btn-principal btn-lg mt-3">Explorar Lugares</a>
@@ -120,7 +122,7 @@
 <section class="container" id="lugares">
   <h2 class="section-title text-center text-success">Lugares Emblemáticos</h2>
   <div class="row justify-content-center mt-4">
-    <div class="col-md-4 mb-4">
+    <div class="col-10 col-sm-6 col-md-4 mb-4">
       <div class="card card-custom">
         <img src="img/sanroque.jpg" class="card-img-top" alt="Lugar 1">
         <div class="card-body">
@@ -129,7 +131,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 mb-4">
+    <div class="col-10 col-sm-6 col-md-4 mb-4">
       <div class="card card-custom">
         <img src="img/morrocoy.png" class="card-img-top" alt="Lugar 2">
         <div class="card-body">
@@ -154,7 +156,7 @@
 
 <!-- CONTACTO -->
 <section class="container py-5" id="contacto">
-  <div class="container mt-5">
+  <div class="container mt-5 text-center text-md-start">
     <h2 class="text-center text-success">Contáctanos</h2>
     <form action="/contacto" method="POST" class="mt-4">
       <div class="mb-3">
