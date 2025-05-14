@@ -5,7 +5,9 @@ const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public')));
+// Ahora sirve desde la raíz
+app.use(express.static(path.join(__dirname, '..')));
+
 
 app.post('/contacto', (req, res) => {
   const { nombre, correo, mensaje } = req.body;
