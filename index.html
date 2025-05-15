@@ -1,133 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Immersive Aguachica</title>
-  <link rel="icon" type="image/png" href="img/favicon.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
- <style>
-  :root {
-    --verde-logo: #8CD211;
-    --amarillo-logo: #fce381;
-    --gris-texto: #333333;
-  }
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --verde-logo: #8cd211;
+      --amarillo-logo: #fce381;
+      --gris-texto: #333333;
+    }
 
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    color: var(--gris-texto);
-  }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--gris-texto);
+      scroll-behavior: smooth;
+    }
 
-  .navbar {
-    background-color: var(--amarillo-logo);
-  }
+    .navbar {
+      background-color: var(--amarillo-logo);
+    }
 
-  .navbar-brand,
-  .nav-link {
-    color: var(--gris-texto) !important;
-    font-weight: 600;
-  }
+    .navbar-brand,
+    .nav-link {
+      color: var(--gris-texto) !important;
+      font-weight: 600;
+    }
 
-  .hero {
-    background-color: white;
-    color: var(--gris-texto);
-    padding: 200px 0 360px;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 3rem;
-    font-weight: bold;
-  }
-
-  .hero p {
-    font-size: 1.25rem;
-    margin: 0 20px;
-  }
-
-  .btn-principal {
-    background-color: var(--verde-logo);
-    border: none;
-    color: white;
-  }
-
-  .btn-principal:hover {
-    background-color: #6DAB0F;
-  }
-
-  .section-title {
-    text-align: center;
-    margin-top: 50px;
-    font-weight: bold;
-    color: var(--verde-logo);
-    font-size: 1.8rem;
-  }
-
-  .card-custom {
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  footer {
-    background-color: #f0f0f0;
-    color: #555;
-    padding: 20px 0;
-    text-align: center;
-  }
-
-  .logo-ajustada {
-    max-width: 300px;
-  }
-
-  .card-title {
-    font-size: 1rem;
-  }
-
-  .card-text {
-    font-size: 0.95rem;
-  }
-
-  @media (max-width: 576px) {
-    section,
-    header,
-    footer {
-      margin: 0 20px;
+    .hero {
+      background-color: white;
+      color: var(--gris-texto);
+      padding: 200px 0 360px;
+      text-align: center;
     }
 
     .hero h1 {
-      font-size: 2rem;
+      font-size: 3rem;
+      font-weight: bold;
     }
 
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1.25rem;
+      margin: 0 20px;
     }
 
-    .section-title,
-    #qr h2,
-    #contacto h2 {
-      font-size: 1.4rem;
-      margin: 0 0 20px;
+    .btn-principal {
+      background-color: var(--verde-logo);
+      border: none;
+      color: white;
+      transition: all 0.3s ease-in-out;
     }
 
-    #qr p {
-      font-size: 1.05rem;
+    .btn-principal:hover {
+      background-color: #6dab0f;
+      transform: scale(1.05);
     }
 
-    #contacto label {
+    .section-title {
+      text-align: center;
+      margin-top: 50px;
+      font-weight: bold;
+      color: var(--verde-logo);
+      font-size: 1.8rem;
+    }
+
+    .card-custom {
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card-custom:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #f0f0f0;
+      color: #555;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .logo-ajustada {
+      max-width: 300px;
+    }
+
+    .card-title {
       font-size: 1rem;
     }
 
-    #contacto input,
-    #contacto textarea,
-    #contacto button {
-      margin: 0 0 20px;
-      width: 100%;
+    .card-text {
+      font-size: 0.95rem;
     }
-  }
-</style>
 
+    @media (max-width: 576px) {
+      section,
+      header,
+      footer {
+        margin: 0 20px;
+      }
 
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title,
+      #qr h2,
+      #contacto h2 {
+        font-size: 1.4rem;
+        margin: 0 0 20px;
+      }
+
+      #qr p {
+        font-size: 1.05rem;
+      }
+
+      #contacto label {
+        font-size: 1rem;
+      }
+
+      #contacto input,
+      #contacto textarea,
+      #contacto button {
+        margin: 0 0 20px;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -135,10 +142,10 @@
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="img/logo.png" alt="Logo" width="70" height="60" class="me-2"> 
+      <img src="img/logo.png" alt="Logo" width="70" height="60" class="me-2" />
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" title="Mostrar menú">
-      <span class="navbar-toggler-icon"></span>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-label="Abrir menú de navegación">
+    <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navmenu">
@@ -153,9 +160,9 @@
 </nav>
 
 <!-- HERO -->
-<header class="hero" id="inicio">
+<header class="hero" id="inicio" data-aos="fade-down">
   <div class="container">
-   <img src="img/logo.png" alt="Logo" class="mb-4 img-fluid logo-ajustada">
+    <img src="img/logo.png" alt="Logo" class="mb-4 img-fluid logo-ajustada" />
     <h1>Turismo que se vive en 3D</h1>
     <p>Explora lugares emblemáticos desde cualquier parte.</p>
     <a href="#lugares" class="btn btn-principal btn-lg mt-3">Explorar Lugares</a>
@@ -164,20 +171,20 @@
 
 <!-- LUGARES -->
 <section class="container" id="lugares">
-  <h2 class="section-title text-center text-success">Lugares Emblemáticos</h2>
+  <h2 class="section-title text-success" data-aos="fade-up">Lugares Emblemáticos</h2>
   <div class="row justify-content-center mt-4">
-    <div class="col-10 col-sm-6 col-md-4 mb-4">
+    <div class="col-10 col-sm-6 col-md-4 mb-4" data-aos="zoom-in">
       <div class="card card-custom">
-        <img src="img/sanroque.jpg" class="card-img-top" alt="Lugar 1">
+        <img src="img/sanroque.jpg" class="card-img-top" alt="Lugar 1" />
         <div class="card-body">
           <h5 class="card-title">Parque San Roque</h5>
           <p class="card-text">Historia, cultura y arquitectura de Aguachica.</p>
         </div>
       </div>
     </div>
-    <div class="col-10 col-sm-6 col-md-4 mb-4">
+    <div class="col-10 col-sm-6 col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
       <div class="card card-custom">
-        <img src="img/morrocoy.png" class="card-img-top" alt="Lugar 2">
+        <img src="img/morrocoy.png" class="card-img-top" alt="Lugar 2" />
         <div class="card-body">
           <h5 class="card-title">Parque Morrocoy</h5>
           <p class="card-text">Un ícono tradicional de Aguachica</p>
@@ -186,36 +193,37 @@
     </div>
   </div>
 </section>
+
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
 <!-- QR / TOUR -->
-<section class="bg-light py-5" id="qr">
-  <br>
+<section class="bg-light py-5" id="qr" data-aos="fade-up">
+  <br />
   <div class="container text-center">
     <h2 class="section-title">Tour 360° y Modelos 3D</h2>
     <p>Escanea el código QR y comienza tu experiencia inmersiva.</p>
-    <br>
-    <img src="img/codigoQR.jpg" alt="QR Code" width="140" class="mb-3">
-    <br>
+    <br />
+    <img src="img/codigoQR.jpg" alt="QR Code" width="140" class="mb-3" />
+    <br />
     <a href="https://imdannygr.github.io/miModelado3d/" class="btn btn-principal" target="_blank" rel="noopener">Ver Tour Virtual</a>
-
   </div>
-  <br><br><br>
+  <br /><br /><br />
 </section>
+
 <br><br><br><br><br><br>
 
 <!-- CONTACTO -->
-<section class="container py-5" id="contacto">
+<section class="container py-5" id="contacto" data-aos="fade-up">
   <div class="container mt-5 text-center text-md-start">
     <h2 class="text-center text-success">Contáctanos</h2>
     <form action="/contacto" method="POST" class="mt-4">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" required>
+        <input type="text" class="form-control" id="nombre" name="nombre" required />
       </div>
       <div class="mb-3">
         <label for="correo" class="form-label">Correo electrónico</label>
-        <input type="email" class="form-control" id="correo" name="correo" required>
+        <input type="email" class="form-control" id="correo" name="correo" required />
       </div>
       <div class="mb-3">
         <label for="mensaje" class="form-label">Mensaje</label>
@@ -233,6 +241,15 @@
   </div>
 </footer>
 
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: false, // <- ¡esto hace que se animen cada vez que se baja y se sube, recordatorio
+  });
+</script>
+
 </body>
 </html>
