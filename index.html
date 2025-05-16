@@ -133,7 +133,36 @@
         margin: 0 0 20px;
         width: 100%;
       }
+
+      
     }
+
+ .hero-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('img/fondo-aguachica.jpg') center/cover no-repeat;
+  filter: blur(8px);
+  transform: scale(1.1); /* evita bordes feos al hacer blur */
+  z-index: 0;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+#objetivos {
+  background-color: #fffbe6;
+}
+
   </style>
 </head>
 <body>
@@ -152,6 +181,7 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="#lugares">Lugares</a></li>
+        <li class="nav-item"><a class="nav-link" href="#objetivos">Objetivos</a></li>
         <li class="nav-item"><a class="nav-link" href="#qr">Tour 360°</a></li>
         <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
       </ul>
@@ -160,15 +190,14 @@
 </nav>
 
 <!-- HERO -->
-<header class="hero" id="inicio" data-aos="fade-down">
-  <div class="container">
-    <img src="img/logo.png" alt="Logo" class="mb-4 img-fluid logo-ajustada" />
-    <h1>Turismo que se vive en 3D</h1>
-    <p>Explora lugares emblemáticos desde cualquier parte.</p>
-    <a href="#lugares" class="btn btn-principal btn-lg mt-3">Explorar Lugares</a>
+<header class="hero-section d-flex align-items-center" id="inicio">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold">Bienvenido a Immersive Aguachica</h1>
+    <p class="lead">Explora Aguachica con recorridos virtuales 360° y experiencias en 3D</p>
+    <a href="#lugares" class="btn btn-warning btn-lg mt-4">Ver lugares</a>
   </div>
 </header>
-
+<br>
 <!-- LUGARES -->
 <section class="container" id="lugares">
   <h2 class="section-title text-success" data-aos="fade-up">Lugares Emblemáticos</h2>
@@ -194,7 +223,59 @@
   </div>
 </section>
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
+
+<section class="py-5" id="objetivos">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-10 text-center">
+        <h2 class="fw-bold">Objetivo general</h2>
+        <p class="lead">
+          Desarrollar una página web interactiva que fomente el turismo en Aguachica mediante experiencias inmersivas en 3D y recorridos virtuales 360° accesibles por códigos QR.
+        </p>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-10 text-center">
+        <h3 class="fw-bold">Objetivos específicos</h3>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="p-3 border rounded bg-white h-100 shadow-sm">
+          <p>✔️ Identificar y seleccionar los principales sitios turísticos del municipio.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-3 border rounded bg-white h-100 shadow-sm">
+          <p>✔️ Modelar en 3D espacios representativos como el Parque San Roque y Parque Morrocoy.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-3 border rounded bg-white h-100 shadow-sm">
+          <p>✔️ Implementar recorridos virtuales 360° utilizando tecnologías compatibles con la web.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-3 border rounded bg-white h-100 shadow-sm">
+          <p>✔️ Diseñar un sistema de navegación accesible desde códigos QR instalados en puntos clave.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-3 border rounded bg-white h-100 shadow-sm">
+          <p>✔️ Promover el uso de herramientas como Blender y software de desarrollo web en la promoción turística local.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- QR / TOUR -->
 <section class="bg-light py-5" id="qr" data-aos="fade-up">
