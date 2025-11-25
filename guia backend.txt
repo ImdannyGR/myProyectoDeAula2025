@@ -1,7 +1,0 @@
-Abrir backend:
-
-Escribir "cmd" en la ruta
-
-comando:
-
-node backend/server.js
