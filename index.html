@@ -8,304 +8,327 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
- 
+
   <style>
+
+    /* Variables globales */
     :root {
-      --verde: #8cd211;
-      --verde-dark: #6dab0f;
-      --crema: #F2F1EB;
-      --negro: #0e0e0e;
-      --gris: #333333;
-      --gris-claro: #f5f5f0;
+      --color-verde:       #8cd211;
+      --color-verde-oscuro: #6dab0f;
+      --color-crema:       #F2F1EB;
+      --color-negro:       #0e0e0e;
+      --color-gris:        #333333;
+      --color-gris-claro:  #f5f5f0;
     }
- 
+
+    /* Reset */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
     html { scroll-behavior: smooth; }
- 
     body {
       font-family: 'DM Sans', sans-serif;
-      color: var(--gris);
-      background: var(--crema);
+      color: var(--color-gris);
+      background: var(--color-crema);
       overflow-x: hidden;
     }
- 
-    /* ── CURSOR ── */
-    .cursor-dot {
+
+
+    /* Cursor personalizado */
+    
+    .cursor-punto {
       width: 8px; height: 8px;
-      background: var(--verde);
+      background: var(--color-verde);
       border-radius: 50%;
       position: fixed; pointer-events: none; z-index: 9999;
       transform: translate(-50%, -50%);
       transition: transform 0.1s;
     }
-    .cursor-ring {
+    .cursor-anillo {
       width: 36px; height: 36px;
-      border: 2px solid var(--verde);
+      border: 2px solid var(--color-verde);
       border-radius: 50%;
       position: fixed; pointer-events: none; z-index: 9998;
       transform: translate(-50%, -50%);
       transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
       opacity: 0.5;
-    }
- 
-    /* ── NAVBAR ── */
-    .navbar {
-      background-color: var(--crema);
+    } 
+
+
+    /* Barra de navegación */
+    .barra-nav {
+      background-color: var(--color-crema);
       border-bottom: 1px solid rgba(0,0,0,0.06);
       padding: 0.4rem 0;
       position: sticky; top: 0; z-index: 1000;
     }
-    .navbar-brand img { height: 70px; width: auto; }
-    .nav-link {
+    .barra-nav .navbar-brand img { height: 70px; width: auto; }
+    .barra-nav .nav-link {
       font-family: 'DM Sans', sans-serif;
       font-weight: 600;
-      color: var(--gris) !important;
+      color: var(--color-gris) !important;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.78rem;
       padding: 0.5rem 1rem !important;
       position: relative;
     }
-    .nav-link::after {
+    .barra-nav .nav-link::after {
       content: '';
       position: absolute; bottom: 0; left: 1rem; right: 1rem;
-      height: 2px; background: var(--verde);
+      height: 2px; background: var(--color-verde);
       transform: scaleX(0); transform-origin: left;
       transition: transform 0.3s ease;
     }
-    .nav-link:hover::after { transform: scaleX(1); }
- 
-    /* ── HERO ── */
-    .hero-section {
+    .barra-nav .nav-link:hover::after { transform: scaleX(1); }
+
+
+    /* Sección hero */
+    .seccion-hero {
       position: relative;
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
-    .hero-bg {
+    .hero-fondo {
       position: absolute; inset: 0;
       background: url('img/fondo-aguachica.jpg') center/cover no-repeat;
       filter: brightness(0.45);
       transform: scale(1.05);
       transition: transform 8s ease;
     }
-    .hero-section:hover .hero-bg { transform: scale(1.08); }
- 
-    /* grain overlay */
-    .hero-section::after {
+    .seccion-hero:hover .hero-fondo { transform: scale(1.08); }
+
+    /* Textura de grano sobre el hero */
+    .seccion-hero::after {
       content: '';
       position: absolute; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 1;
     }
- 
-    .hero-content {
+
+    .hero-contenido {
       position: relative; z-index: 2;
       text-align: center; padding: 2rem;
     }
-    .hero-eyebrow {
+    .hero-etiqueta {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.8rem; font-weight: 600;
       letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--verde);
+      color: var(--color-verde);
       display: inline-block;
-      border: 1px solid var(--verde);
+      border: 1px solid var(--color-verde);
       padding: 0.3rem 1rem; border-radius: 2px;
       margin-bottom: 1.5rem;
-      animation: fadeSlideDown 0.8s ease both;
+      animation: deslizarArriba-invertido 0.8s ease both;
     }
-    .hero-title {
+    .hero-titulo {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(3.5rem, 10vw, 9rem);
       line-height: 0.95;
       color: white;
       letter-spacing: 0.02em;
-      animation: fadeSlideUp 0.9s ease 0.2s both;
+      animation: deslizarArriba 0.9s ease 0.2s both;
     }
-    .hero-title span { color: var(--verde); }
-    .hero-sub {
+    .hero-titulo span { color: var(--color-verde); }
+    .hero-subtitulo {
       font-size: clamp(1rem, 2vw, 1.25rem);
       color: rgba(255,255,255,0.75);
       max-width: 540px; margin: 1.5rem auto 2.5rem;
       font-weight: 300; line-height: 1.6;
-      animation: fadeSlideUp 0.9s ease 0.4s both;
+      animation: deslizarArriba 0.9s ease 0.4s both;
     }
-    .hero-cta {
+    .hero-botones {
       display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-      animation: fadeSlideUp 0.9s ease 0.6s both;
+      animation: deslizarArriba 0.9s ease 0.6s both;
     }
-    .btn-hero {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600; font-size: 0.85rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.85rem 2.2rem; border-radius: 3px;
-      border: 2px solid var(--verde);
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    .btn-hero-filled { background: var(--verde); color: white; }
-    .btn-hero-filled:hover { background: var(--verde-dark); border-color: var(--verde-dark); color: white; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(140,210,17,0.35); }
-    .btn-hero-outline { background: transparent; color: white; }
-    .btn-hero-outline:hover { background: white; color: var(--negro); transform: translateY(-2px); }
- 
+
+    /* Indicador de scroll */
     .hero-scroll {
       position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
       z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      animation: fadeIn 1.5s 1.2s ease both;
+      animation: aparecer 1.5s 1.2s ease both;
     }
     .hero-scroll span {
       font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: rgba(255,255,255,0.5);
     }
-    .scroll-line {
+    .linea-scroll {
       width: 1px; height: 50px; background: rgba(255,255,255,0.3);
       position: relative; overflow: hidden;
     }
-    .scroll-line::after {
+    .linea-scroll::after {
       content: ''; position: absolute; top: -100%; left: 0;
-      width: 100%; height: 100%; background: var(--verde);
-      animation: scrollDown 2s ease infinite;
+      width: 100%; height: 100%; background: var(--color-verde);
+      animation: bajarLinea 2s ease infinite;
     }
- 
-    /* ── STAT BAR ── */
-    .stat-bar {
-      background: var(--negro);
+
+
+    /* Botones */
+    .btn-base {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.85rem 2.2rem; border-radius: 3px;
+      border: 2px solid var(--color-verde);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-relleno { background: var(--color-verde); color: white; }
+    .btn-relleno:hover {
+      background: var(--color-verde-oscuro);
+      border-color: var(--color-verde-oscuro);
+      color: white; transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(140,210,17,0.35);
+    }
+    .btn-contorno { background: transparent; color: white; }
+    .btn-contorno:hover { background: white; color: var(--color-negro); transform: translateY(-2px); }
+
+
+    /* Barra de estadísticas */
+    .barra-estadisticas {
+      background: var(--color-negro);
       padding: 2rem 0;
     }
-    .stat-item {
+    .estadistica-item {
       text-align: center; padding: 1rem;
       border-right: 1px solid rgba(255,255,255,0.07);
     }
-    .stat-item:last-child { border-right: none; }
-    .stat-num {
+    .estadistica-item:last-child { border-right: none; }
+    .estadistica-numero {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem; color: var(--verde); line-height: 1;
+      font-size: 2.8rem; color: var(--color-verde); line-height: 1;
     }
-    .stat-label {
+    .estadistica-etiqueta {
       font-size: 0.72rem; text-transform: uppercase;
       letter-spacing: 0.18em; color: rgba(255,255,255,0.4);
       margin-top: 0.3rem;
     }
- 
-    /* ── SECTION LABEL ── */
-    .section-label {
+
+
+    /* Etiqueta y título de sección reutilizables */
+    .seccion-etiqueta {
       font-size: 0.72rem; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--verde);
+      text-transform: uppercase; color: var(--color-verde);
       font-weight: 700; margin-bottom: 0.5rem;
     }
-    .section-heading {
+    .seccion-titulo {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.2rem, 5vw, 3.8rem);
-      line-height: 1.05; color: var(--negro);
+      line-height: 1.05; color: var(--color-negro);
     }
-    .section-heading-white { color: white; }
- 
-    /* ── LUGARES ── */
-    #lugares { padding: 7rem 0; background: var(--crema); }
- 
-    .lugar-card {
+    .seccion-titulo--blanco { color: white; }
+    .seccion-divisor {
+      width: 48px; height: 3px; background: var(--color-verde);
+      margin: 1rem 0 2.5rem;
+    }
+    .seccion-divisor--centrado { margin: 1rem auto 2.5rem; }
+
+
+    /* Sección Lugares */
+    #lugares { padding: 7rem 0; background: var(--color-crema); }
+
+    .tarjeta-lugar {
       position: relative; overflow: hidden; border-radius: 6px;
       cursor: pointer;
     }
-    .lugar-card img {
+    .tarjeta-lugar img {
       width: 100%; height: 380px; object-fit: cover;
       transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
       display: block;
     }
-    .lugar-card:hover img { transform: scale(1.08); }
-    .lugar-card-overlay {
+    .tarjeta-lugar:hover img { transform: scale(1.08); }
+    .tarjeta-lugar__capa {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 2rem;
       transition: background 0.4s;
     }
-    .lugar-card:hover .lugar-card-overlay {
+    .tarjeta-lugar:hover .tarjeta-lugar__capa {
       background: linear-gradient(to top, rgba(14,14,14,0.92) 0%, rgba(0,0,0,0.3) 55%, rgba(140,210,17,0.15) 100%);
     }
-    .lugar-tag {
+    .tarjeta-lugar__categoria {
       font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--verde); font-weight: 700; margin-bottom: 0.4rem;
+      color: var(--color-verde); font-weight: 700; margin-bottom: 0.4rem;
     }
-    .lugar-name {
+    .tarjeta-lugar__nombre {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 2rem; color: white; line-height: 1;
     }
-    .lugar-desc {
+    .tarjeta-lugar__descripcion {
       font-size: 0.85rem; color: rgba(255,255,255,0.7);
       margin-top: 0.5rem; font-weight: 300;
       max-height: 0; overflow: hidden;
       transition: max-height 0.4s ease, opacity 0.4s ease;
       opacity: 0;
     }
-    .lugar-card:hover .lugar-desc { max-height: 80px; opacity: 1; }
-    .lugar-btn {
+    .tarjeta-lugar:hover .tarjeta-lugar__descripcion { max-height: 80px; opacity: 1; }
+    .tarjeta-lugar__enlace {
       display: inline-block; margin-top: 1rem;
       font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--verde); font-weight: 700;
+      color: var(--color-verde); font-weight: 700;
       opacity: 0; transform: translateY(8px);
       transition: opacity 0.3s 0.1s ease, transform 0.3s 0.1s ease;
       text-decoration: none;
     }
-    .lugar-card:hover .lugar-btn { opacity: 1; transform: translateY(0); }
- 
-    .numero-lugar {
+    .tarjeta-lugar:hover .tarjeta-lugar__enlace { opacity: 1; transform: translateY(0); }
+    .tarjeta-lugar__numero {
       position: absolute; top: 1.2rem; right: 1.5rem;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 3.5rem; color: rgba(255,255,255,0.08);
       line-height: 1; user-select: none;
     }
- 
-    /* ── OBJECTIVES ── */
-    #objetivos { padding: 7rem 0; background: var(--negro); }
- 
-    .obj-grid {
+
+
+    /* Sección Objetivos */
+    #objetivos { padding: 7rem 0; background: var(--color-negro); }
+
+    .objetivos-cuadricula {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1px;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.06);
     }
-    .obj-item {
-      background: var(--negro);
+    .objetivo-item {
+      background: var(--color-negro);
       padding: 2.5rem 2rem;
       position: relative; overflow: hidden;
       transition: background 0.3s;
     }
-    .obj-item::before {
+    .objetivo-item::before {
       content: '';
       position: absolute; top: 0; left: 0;
       width: 3px; height: 0;
-      background: var(--verde);
+      background: var(--color-verde);
       transition: height 0.4s ease;
     }
-    .obj-item:hover::before { height: 100%; }
-    .obj-item:hover { background: rgba(140,210,17,0.04); }
-    .obj-num {
+    .objetivo-item:hover::before { height: 100%; }
+    .objetivo-item:hover { background: rgba(140,210,17,0.04); }
+    .objetivo-item__numero {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 3rem; color: rgba(255,255,255,0.06);
       line-height: 1; margin-bottom: 1rem;
     }
-    .obj-text {
+    .objetivo-item__texto {
       font-size: 0.9rem; color: rgba(255,255,255,0.65);
       line-height: 1.7;
     }
-    .obj-icon { font-size: 1.5rem; margin-bottom: 1rem; }
- 
-    .obj-general {
+    .objetivo-item__icono { font-size: 1.5rem; margin-bottom: 1rem; }
+
+    .objetivo-general {
       background: linear-gradient(135deg, rgba(140,210,17,0.1) 0%, rgba(140,210,17,0.02) 100%);
       border: 1px solid rgba(140,210,17,0.2);
       border-radius: 6px; padding: 3rem;
       margin-bottom: 4rem;
     }
-    .obj-general p {
+    .objetivo-general p {
       font-size: 1.1rem; color: rgba(255,255,255,0.75);
       line-height: 1.8; max-width: 720px; margin: 0 auto;
     }
- 
-    /* ── QR / TOUR ── */
-    #qr { padding: 7rem 0; background: var(--crema); position: relative; overflow: hidden; }
+
+
+    /* Sección Tour / QR */
+    #qr { padding: 7rem 0; background: var(--color-crema); position: relative; overflow: hidden; }
     #qr::before {
       content: 'TOUR';
       position: absolute; right: -2rem; top: 50%;
@@ -314,8 +337,8 @@
       font-size: 18rem; color: rgba(0,0,0,0.03);
       pointer-events: none; white-space: nowrap;
     }
- 
-    .qr-card {
+
+    .tarjeta-qr {
       background: white;
       border-radius: 12px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
@@ -323,52 +346,54 @@
       display: flex; align-items: center; gap: 3rem;
       flex-wrap: wrap;
     }
-    .qr-img-wrap {
+    .tarjeta-qr__imagen-contenedor {
       position: relative; flex-shrink: 0;
     }
-    .qr-img-wrap::before {
+    .tarjeta-qr__imagen-contenedor::before {
       content: '';
       position: absolute; inset: -8px;
       border: 2px dashed rgba(140,210,17,0.4);
       border-radius: 8px;
-      animation: rotateDash 20s linear infinite;
+      animation: girarBorde 20s linear infinite;
     }
-    .qr-img-wrap img {
+    .tarjeta-qr__imagen-contenedor img {
       width: 160px; height: 160px; object-fit: contain;
       border-radius: 4px; display: block;
     }
-    .qr-info { flex: 1; min-width: 220px; }
-    .qr-info h3 {
+    .tarjeta-qr__info { flex: 1; min-width: 220px; }
+    .tarjeta-qr__info h3 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.2rem; color: var(--negro); margin-bottom: 0.8rem;
+      font-size: 2.2rem; color: var(--color-negro); margin-bottom: 0.8rem;
     }
-    .qr-info p {
+    .tarjeta-qr__info p {
       font-size: 0.95rem; color: #666; line-height: 1.7; margin-bottom: 1.5rem;
     }
+
     .btn-tour {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--verde); color: white;
+      background: var(--color-verde); color: white;
       font-family: 'DM Sans', sans-serif; font-weight: 700;
       font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
       padding: 0.9rem 2rem; border-radius: 3px; text-decoration: none;
-      transition: all 0.3s ease; border: 2px solid var(--verde);
+      transition: all 0.3s ease; border: 2px solid var(--color-verde);
     }
     .btn-tour:hover {
-      background: transparent; color: var(--verde-dark);
-      border-color: var(--verde-dark);
+      background: transparent; color: var(--color-verde-oscuro);
+      border-color: var(--color-verde-oscuro);
       transform: translateY(-2px); box-shadow: 0 8px 24px rgba(140,210,17,0.25);
     }
     .btn-tour svg { transition: transform 0.3s; }
     .btn-tour:hover svg { transform: translateX(4px); }
- 
-    /* ── FEATURES ── */
-    .features-strip {
-      background: var(--negro); padding: 5rem 0;
+
+
+    /* Franja de características */
+    .franja-caracteristicas {
+      background: var(--color-negro); padding: 5rem 0;
     }
-    .feat-item {
+    .caracteristica-item {
       padding: 1.5rem; text-align: center;
     }
-    .feat-icon {
+    .caracteristica-item__icono {
       width: 56px; height: 56px;
       border: 1px solid rgba(140,210,17,0.3);
       border-radius: 50%;
@@ -377,487 +402,525 @@
       background: rgba(140,210,17,0.06);
       transition: all 0.3s;
     }
-    .feat-item:hover .feat-icon {
-      background: var(--verde); border-color: var(--verde); transform: scale(1.1);
+    .caracteristica-item:hover .caracteristica-item__icono {
+      background: var(--color-verde); border-color: var(--color-verde); transform: scale(1.1);
     }
-    .feat-title {
+    .caracteristica-item__titulo {
       font-weight: 700; font-size: 0.9rem; color: white;
       margin-bottom: 0.4rem; letter-spacing: 0.05em;
     }
-    .feat-text { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.5; }
- 
-    /* ── CONTACTO ── */
-    #contacto { padding: 7rem 0; background: var(--gris-claro); }
- 
-    .contacto-wrap {
+    .caracteristica-item__texto { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+
+    /* Sección Contacto */
+    #contacto { padding: 7rem 0; background: var(--color-gris-claro); }
+
+    .contacto-contenedor {
       display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
     }
-    @media (max-width: 768px) { .contacto-wrap { grid-template-columns: 1fr; gap: 2.5rem; } }
- 
     .contacto-info h3 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem; color: var(--negro); margin-bottom: 1rem;
+      font-size: 2.5rem; color: var(--color-negro); margin-bottom: 1rem;
     }
     .contacto-info p {
       font-size: 0.95rem; color: #666; line-height: 1.8; margin-bottom: 2rem;
     }
-    .contacto-detail {
+    .contacto-detalle {
       display: flex; align-items: center; gap: 0.8rem;
-      margin-bottom: 1rem; font-size: 0.88rem; color: var(--gris);
+      margin-bottom: 1rem; font-size: 0.88rem; color: var(--color-gris);
     }
-    .contacto-detail-icon {
+    .contacto-detalle__icono {
       width: 36px; height: 36px; border-radius: 50%;
       background: rgba(140,210,17,0.12);
       display: flex; align-items: center; justify-content: center;
       font-size: 1rem; flex-shrink: 0;
     }
- 
-    .form-field {
-      margin-bottom: 1.4rem;
-    }
-    .form-field label {
+
+    .campo-formulario { margin-bottom: 1.4rem; }
+    .campo-formulario label {
       display: block; font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gris); margin-bottom: 0.5rem;
+      color: var(--color-gris); margin-bottom: 0.5rem;
     }
-    .form-field input,
-    .form-field textarea {
+    .campo-formulario input,
+    .campo-formulario textarea {
       width: 100%; padding: 0.85rem 1rem;
       border: 1.5px solid #e0e0d8;
-      background: white; color: var(--negro);
+      background: white; color: var(--color-negro);
       font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
       border-radius: 4px; outline: none;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .form-field input:focus,
-    .form-field textarea:focus {
-      border-color: var(--verde);
+    .campo-formulario input:focus,
+    .campo-formulario textarea:focus {
+      border-color: var(--color-verde);
       box-shadow: 0 0 0 3px rgba(140,210,17,0.12);
     }
-    .form-field textarea { resize: vertical; min-height: 130px; }
+    .campo-formulario textarea { resize: vertical; min-height: 130px; }
+
     .btn-enviar {
-      background: var(--negro); color: white;
+      background: var(--color-negro); color: white;
       font-family: 'DM Sans', sans-serif; font-weight: 700;
       font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 1rem 2.5rem; border: 2px solid var(--negro);
+      padding: 1rem 2.5rem; border: 2px solid var(--color-negro);
       border-radius: 3px; cursor: pointer;
       transition: all 0.3s; width: 100%;
     }
     .btn-enviar:hover {
-      background: var(--verde); border-color: var(--verde);
+      background: var(--color-verde); border-color: var(--color-verde);
       transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
- 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--negro); padding: 3rem 0 1.5rem;
+
+
+    /* Footer */
+    .pie-pagina {
+      background: var(--color-negro); padding: 3rem 0 1.5rem;
     }
-    .footer-top {
+    .pie-pagina__superior {
       display: flex; align-items: flex-start; justify-content: space-between;
       flex-wrap: wrap; gap: 2rem;
       padding-bottom: 2.5rem;
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
-    .footer-brand img { height: 60px; width: auto; filter: brightness(1); }
-    .footer-brand p {
+    .pie-pagina__marca img { height: 60px; width: auto; }
+    .pie-pagina__marca p {
       font-size: 0.82rem; color: rgba(255,255,255,0.35);
       max-width: 260px; line-height: 1.7; margin-top: 0.8rem;
     }
-    .footer-links h5 {
+    .pie-pagina__enlaces h5 {
       font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: rgba(255,255,255,0.25); font-weight: 700; margin-bottom: 1rem;
     }
-    .footer-links a {
+    .pie-pagina__enlaces a {
       display: block; font-size: 0.85rem; color: rgba(255,255,255,0.5);
       text-decoration: none; margin-bottom: 0.4rem;
       transition: color 0.3s;
     }
-    .footer-links a:hover { color: var(--verde); }
-    .footer-bottom {
+    .pie-pagina__enlaces a:hover { color: var(--color-verde); }
+    .pie-pagina__inferior {
       padding-top: 1.5rem; text-align: center;
       font-size: 0.75rem; color: rgba(255,255,255,0.2);
       letter-spacing: 0.08em;
     }
- 
-    /* ── DIVIDER ── */
-    .section-divider {
-      width: 48px; height: 3px; background: var(--verde);
-      margin: 1rem 0 2.5rem;
-    }
-    .section-divider-center { margin: 1rem auto 2.5rem; }
- 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeSlideDown {
+
+
+    /* Animaciones */
+    @keyframes deslizarArriba-invertido {
       from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    @keyframes fadeSlideUp {
+    @keyframes deslizarArriba {
       from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    @keyframes fadeIn {
+    @keyframes aparecer {
       from { opacity: 0; } to { opacity: 1; }
     }
-    @keyframes scrollDown {
-      0% { top: -100%; } 100% { top: 100%; }
+    @keyframes bajarLinea {
+      0%   { top: -100%; } 100% { top: 100%; }
     }
-    @keyframes rotateDash {
+    @keyframes girarBorde {
       from { transform: rotate(0deg); } to { transform: rotate(360deg); }
     }
- 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 576px) {
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
-      .qr-card { flex-direction: column; align-items: flex-start; }
-      .footer-top { flex-direction: column; }
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .contacto-contenedor { grid-template-columns: 1fr; gap: 2.5rem; }
     }
+    @media (max-width: 576px) {
+      .estadistica-item  { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .tarjeta-qr        { flex-direction: column; align-items: flex-start; }
+      .pie-pagina__superior { flex-direction: column; }
+    }
+
   </style>
 </head>
 <body>
- 
-<!-- CURSOR -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
- 
-<!-- NAV -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="img/logo.png" alt="Immersive Aguachica" />
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-label="Abrir menú">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navmenu">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="#lugares">Lugares</a></li>
-        <li class="nav-item"><a class="nav-link" href="#objetivos">Proyecto</a></li>
-        <li class="nav-item"><a class="nav-link" href="#qr">Tour 360°</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-        <li class="nav-item ms-lg-3">
-          <a href="https://imdannygr.github.io/miModelado3d/" target="_blank" rel="noopener"
-             class="btn-hero btn-hero-filled" style="font-size:0.72rem; padding: 0.6rem 1.4rem;">
-            Ver Modelos 3D →
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
- 
-<!-- HERO -->
-<header class="hero-section" id="inicio">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Cesar · Colombia · 2025</div>
-    <h1 class="hero-title">
-      Immersive<br><span>Aguachica</span>
-    </h1>
-    <p class="hero-sub">Recorridos virtuales 360° y modelos 3D interactivos de los lugares más emblemáticos del municipio.</p>
-    <div class="hero-cta">
-      <a href="#lugares" class="btn-hero btn-hero-filled">Explorar lugares</a>
-      <a href="https://imdannygr.github.io/miModelado3d/" target="_blank" rel="noopener" class="btn-hero btn-hero-outline">Ver Modelos 3D</a>
-    </div>
-  </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</header>
- 
-<!-- STAT BAR -->
-<div class="stat-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-6 col-md-3 stat-item" data-aos="fade-up" data-aos-delay="0">
-        <div class="stat-num">2</div>
-        <div class="stat-label">Lugares emblemáticos</div>
-      </div>
-      <div class="col-6 col-md-3 stat-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Modelos 3D</div>
-      </div>
-      <div class="col-6 col-md-3 stat-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="stat-num">360°</div>
-        <div class="stat-label">Tour virtual</div>
-      </div>
-      <div class="col-6 col-md-3 stat-item" data-aos="fade-up" data-aos-delay="300">
-        <div class="stat-num">QR</div>
-        <div class="stat-label">Acceso inmersivo</div>
-      </div>
-    </div>
-  </div>
-</div>
- 
-<!-- FEATURES STRIP -->
-<div class="features-strip">
-  <div class="container">
-    <div class="row">
-      <div class="col-6 col-md-3 feat-item" data-aos="fade-up" data-aos-delay="0">
-        <div class="feat-icon">🌐</div>
-        <div class="feat-title">Tour 360°</div>
-        <div class="feat-text">Recorre los espacios de manera inmersiva desde cualquier dispositivo.</div>
-      </div>
-      <div class="col-6 col-md-3 feat-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="feat-icon">🧊</div>
-        <div class="feat-title">Modelado 3D</div>
-        <div class="feat-text">Modelos interactivos creados en Blender con detalle histórico.</div>
-      </div>
-      <div class="col-6 col-md-3 feat-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="feat-icon">📱</div>
-        <div class="feat-title">Código QR</div>
-        <div class="feat-text">Escanea desde puntos clave del municipio y comienza el tour.</div>
-      </div>
-      <div class="col-6 col-md-3 feat-item" data-aos="fade-up" data-aos-delay="300">
-        <div class="feat-icon">🏛️</div>
-        <div class="feat-title">Patrimonio</div>
-        <div class="feat-text">Preservación digital del patrimonio cultural de Aguachica.</div>
-      </div>
-    </div>
-  </div>
-</div>
- 
-<!-- LUGARES -->
-<section id="lugares">
-  <div class="container">
-    <div data-aos="fade-up">
-      <p class="section-label">Destinos</p>
-      <h2 class="section-heading">Lugares<br>Emblemáticos</h2>
-      <div class="section-divider"></div>
-    </div>
- 
-    <div class="row g-4 mt-2">
-      <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
-        <div class="lugar-card">
-          <img src="img/sanroque.jpg" alt="Parque San Roque" loading="lazy" />
-          <div class="lugar-card-overlay">
-            <div class="numero-lugar">01</div>
-            <div class="lugar-tag">Parque · Historia</div>
-            <div class="lugar-name">Parque San Roque</div>
-            <p class="lugar-desc">Corazón histórico y cultural de Aguachica. Escenario de tradición, arquitectura colonial y vida cotidiana del municipio.</p>
-            <a href="#qr" class="lugar-btn">Ver tour 360° →</a>
-          </div>
-        </div>
-      </div>
- 
-      <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
-        <div class="lugar-card">
-          <img src="img/morrocoy.png" alt="Parque Morrocoy" loading="lazy" />
-          <div class="lugar-card-overlay">
-            <div class="numero-lugar">02</div>
-            <div class="lugar-tag">Parque · Tradición</div>
-            <div class="lugar-name">Parque Morrocoy</div>
-            <p class="lugar-desc">Ícono natural y símbolo de identidad para los aguachiquenses. Un espacio donde la fauna y la cultura se encuentran.</p>
-            <a href="#qr" class="lugar-btn">Ver tour 360° →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- OBJECTIVES -->
-<section id="objetivos">
-  <div class="container">
-    <div data-aos="fade-up">
-      <p class="section-label" style="color: rgba(140,210,17,0.8);">El Proyecto</p>
-      <h2 class="section-heading section-heading-white">Objetivos del<br>Proyecto</h2>
-      <div class="section-divider"></div>
-    </div>
- 
-    <div class="obj-general" data-aos="fade-up" data-aos-delay="100">
-      <p class="section-label" style="color:var(--verde); text-align:center;">Objetivo General</p>
-      <p>Desarrollar una página web interactiva que fomente el turismo en Aguachica mediante experiencias inmersivas en 3D y recorridos virtuales 360° accesibles por códigos QR, promoviendo el patrimonio cultural del municipio.</p>
-    </div>
- 
-    <div class="obj-grid" data-aos="fade-up" data-aos-delay="200">
-      <div class="obj-item">
-        <div class="obj-num">01</div>
-        <div class="obj-icon">🗺️</div>
-        <div class="obj-text">Identificar y seleccionar los principales sitios turísticos y culturales del municipio de Aguachica.</div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">02</div>
-        <div class="obj-icon">🧊</div>
-        <div class="obj-text">Modelar en 3D espacios representativos como el Parque San Roque y Parque Morrocoy utilizando Blender.</div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">03</div>
-        <div class="obj-icon">🌐</div>
-        <div class="obj-text">Implementar recorridos virtuales 360° utilizando tecnologías modernas compatibles con la web.</div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">04</div>
-        <div class="obj-icon">📱</div>
-        <div class="obj-text">Diseñar un sistema de navegación accesible desde códigos QR instalados en puntos clave del municipio.</div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">05</div>
-        <div class="obj-icon">🎓</div>
-        <div class="obj-text">Promover el uso de herramientas como Blender y software de desarrollo web en la promoción turística local.</div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">06</div>
-        <div class="obj-icon">🏛️</div>
-        <div class="obj-text">Preservar digitalmente el patrimonio histórico y cultural de Aguachica para futuras generaciones.</div>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- QR / TOUR -->
-<section id="qr">
-  <div class="container" style="position:relative; z-index:1;">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-5" data-aos="fade-right">
-        <p class="section-label">Experiencia Inmersiva</p>
-        <h2 class="section-heading">Tour 360°<br>& Modelos 3D</h2>
-        <div class="section-divider"></div>
-        <p style="color:#666; font-size:0.95rem; line-height:1.8;">
-          Accede a la experiencia completa: recorridos virtuales panorámicos y modelos 3D interactivos de los lugares más representativos de Aguachica. Disponible desde cualquier dispositivo.
-        </p>
-      </div>
- 
-      <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
-        <div class="qr-card">
-          <div class="qr-img-wrap">
-            <img src="img/codigoQR.jpg" alt="Código QR Tour Virtual" />
-          </div>
-          <div class="qr-info">
-            <h3>Escanea y Explora</h3>
-            <p>Apunta tu cámara al código QR para comenzar el tour virtual inmersivo, o haz clic en el botón para acceder directamente desde el navegador.</p>
-            <a href="https://imdannygr.github.io/miModelado3d/" target="_blank" rel="noopener" class="btn-tour">
-              Ver Tour Virtual
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
+
+
+  <!-- Cursor -->
+  <div class="cursor-punto"  id="cursorPunto"></div>
+  <div class="cursor-anillo" id="cursorAnillo"></div>
+  
+
+  <!-- Navegación -->
+  <nav class="barra-nav navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="Immersive Aguachica" />
+      </a>
+      <button class="navbar-toggler border-0" type="button"
+        data-bs-toggle="collapse" data-bs-target="#menuNav"
+        aria-label="Abrir menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#lugares">Lugares</a></li>
+          <li class="nav-item"><a class="nav-link" href="#objetivos">Proyecto</a></li>
+          <li class="nav-item"><a class="nav-link" href="#qr">Tour 360°</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          <li class="nav-item ms-lg-3">
+            <a href="modelos.html" target="_blank" rel="noopener"
+               class="btn-base btn-relleno" style="font-size:0.72rem; padding: 0.6rem 1.4rem;">
+              Ver Modelos 3D →
             </a>
-          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+  <header class="seccion-hero" id="inicio">
+    <div class="hero-fondo"></div>
+    <div class="hero-contenido">
+      <div class="hero-etiqueta">Cesar · Colombia · 2025</div>
+      <h1 class="hero-titulo">
+        Immersive<br><span>Aguachica</span>
+      </h1>
+      <p class="hero-subtitulo">Recorridos virtuales 360° y modelos 3D interactivos de los lugares más emblemáticos del municipio.</p>
+      <div class="hero-botones">
+        <a href="#lugares" class="btn-base btn-relleno">Explorar lugares</a>
+        <a href="modelos.html" target="_blank" rel="noopener"
+           class="btn-base btn-contorno">Ver Modelos 3D</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="linea-scroll"></div>
+      <span>Scroll</span>
+    </div>
+  </header>
+
+
+  <!-- Estadísticas -->
+  <div class="barra-estadisticas">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-md-3 estadistica-item" data-aos="fade-up" data-aos-delay="0">
+          <div class="estadistica-numero">2</div>
+          <div class="estadistica-etiqueta">Lugares emblemáticos</div>
+        </div>
+        <div class="col-6 col-md-3 estadistica-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="estadistica-numero">3</div>
+          <div class="estadistica-etiqueta">Modelos 3D</div>
+        </div>
+        <div class="col-6 col-md-3 estadistica-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="estadistica-numero">360°</div>
+          <div class="estadistica-etiqueta">Tour virtual</div>
+        </div>
+        <div class="col-6 col-md-3 estadistica-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="estadistica-numero">QR</div>
+          <div class="estadistica-etiqueta">Acceso inmersivo</div>
         </div>
       </div>
     </div>
   </div>
-</section>
- 
-<!-- CONTACTO -->
-<section id="contacto">
-  <div class="container">
-    <div class="row justify-content-center mb-5">
-      <div class="col-lg-6 text-center" data-aos="fade-up">
-        <p class="section-label">Escríbenos</p>
-        <h2 class="section-heading">Contáctanos</h2>
-        <div class="section-divider section-divider-center"></div>
-      </div>
-    </div>
- 
-    <div class="contacto-wrap" data-aos="fade-up" data-aos-delay="100">
-      <div class="contacto-info">
-        <h3>¿Tienes alguna<br>pregunta?</h3>
-        <p>Estamos construyendo una experiencia digital única para Aguachica. Si tienes sugerencias, quieres colaborar o simplemente quieres saber más sobre el proyecto, escríbenos.</p>
-        <div class="contacto-detail">
-          <div class="contacto-detail-icon">📍</div>
-          <span>Aguachica, Cesar, Colombia</span>
+
+
+  <!-- Características -->
+  <div class="franja-caracteristicas">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-md-3 caracteristica-item" data-aos="fade-up" data-aos-delay="0">
+          <div class="caracteristica-item__icono">🌐</div>
+          <div class="caracteristica-item__titulo">Tour 360°</div>
+          <div class="caracteristica-item__texto">Recorre los espacios de manera inmersiva desde cualquier dispositivo.</div>
         </div>
-        <div class="contacto-detail">
-          <div class="contacto-detail-icon">🎓</div>
-          <span>Proyecto académico · 2025</span>
+        <div class="col-6 col-md-3 caracteristica-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="caracteristica-item__icono">🧊</div>
+          <div class="caracteristica-item__titulo">Modelado 3D</div>
+          <div class="caracteristica-item__texto">Modelos interactivos creados en Blender con detalle histórico.</div>
         </div>
-        <div class="contacto-detail">
-          <div class="contacto-detail-icon">💻</div>
-          <span>Tecnologías: Blender · HTML · CSS · JS</span>
+        <div class="col-6 col-md-3 caracteristica-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="caracteristica-item__icono">📱</div>
+          <div class="caracteristica-item__titulo">Código QR</div>
+          <div class="caracteristica-item__texto">Escanea desde puntos clave del municipio y comienza el tour.</div>
         </div>
-      </div>
- 
-      <div>
-        <form action="/contacto" method="POST">
-          <div class="form-field">
-            <label for="nombre">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-          </div>
-          <div class="form-field">
-            <label for="correo">Correo electrónico</label>
-            <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required />
-          </div>
-          <div class="form-field">
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí…" required></textarea>
-          </div>
-          <button type="submit" class="btn-enviar">Enviar mensaje</button>
-        </form>
+        <div class="col-6 col-md-3 caracteristica-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="caracteristica-item__icono">🏛️</div>
+          <div class="caracteristica-item__titulo">Patrimonio</div>
+          <div class="caracteristica-item__texto">Preservación digital del patrimonio cultural de Aguachica.</div>
+        </div>
       </div>
     </div>
   </div>
-</section>
- 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="img/logo.png" alt="Logo" />
-        <p>Turismo digital e inmersivo para Aguachica, Cesar. Preservando y promoviendo el patrimonio cultural a través de tecnología.</p>
+
+
+  <!-- Lugares -->
+  <section id="lugares">
+    <div class="container">
+
+      <div data-aos="fade-up">
+        <p class="seccion-etiqueta">Destinos</p>
+        <h2 class="seccion-titulo">Lugares<br>Emblemáticos</h2>
+        <div class="seccion-divisor"></div>
       </div>
-      <div class="footer-links">
-        <h5>Navegación</h5>
-        <a href="#inicio">Inicio</a>
-        <a href="#lugares">Lugares</a>
-        <a href="#objetivos">Proyecto</a>
-        <a href="#qr">Tour 360°</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-      <div class="footer-links">
-        <h5>Herramientas</h5>
-        <a href="https://imdannygr.github.io/miModelado3d/" target="_blank" rel="noopener">Modelos 3D</a>
-        <a href="#qr">Tour Virtual</a>
-        <a href="#qr">Código QR</a>
+
+      <div class="row g-4 mt-2">
+
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
+          <div class="tarjeta-lugar">
+            <img src="img/sanroque.jpg" alt="Parque San Roque" loading="lazy" />
+            <div class="tarjeta-lugar__capa">
+              <div class="tarjeta-lugar__numero">01</div>
+              <div class="tarjeta-lugar__categoria">Parque · Historia</div>
+              <div class="tarjeta-lugar__nombre">Parque San Roque</div>
+              <p class="tarjeta-lugar__descripcion">Corazón histórico y cultural de Aguachica. Escenario de tradición, arquitectura colonial y vida cotidiana del municipio.</p>
+              <a href="#qr" class="tarjeta-lugar__enlace">Ver tour 360° →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="tarjeta-lugar">
+            <img src="img/morrocoy.png" alt="Parque Morrocoy" loading="lazy" />
+            <div class="tarjeta-lugar__capa">
+              <div class="tarjeta-lugar__numero">02</div>
+              <div class="tarjeta-lugar__categoria">Parque · Tradición</div>
+              <div class="tarjeta-lugar__nombre">Parque Morrocoy</div>
+              <p class="tarjeta-lugar__descripcion">Ícono natural y símbolo de identidad para los aguachiquenses. Un espacio donde la fauna y la cultura se encuentran.</p>
+              <a href="#qr" class="tarjeta-lugar__enlace">Ver tour 360° →</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Immersive Aguachica · Todos los derechos reservados · Aguachica, Cesar, Colombia</p>
+  </section>
+
+
+  <!-- Objetivos -->
+  <section id="objetivos">
+    <div class="container">
+
+      <div data-aos="fade-up">
+        <p class="seccion-etiqueta" style="color: rgba(140,210,17,0.8);">El Proyecto</p>
+        <h2 class="seccion-titulo seccion-titulo--blanco">Objetivos del<br>Proyecto</h2>
+        <div class="seccion-divisor"></div>
+      </div>
+
+      <div class="objetivo-general" data-aos="fade-up" data-aos-delay="100">
+        <p class="seccion-etiqueta" style="color:var(--color-verde); text-align:center;">Objetivo General</p>
+        <p>Desarrollar una página web interactiva que fomente el turismo en Aguachica mediante experiencias inmersivas en 3D y recorridos virtuales 360° accesibles por códigos QR, promoviendo el patrimonio cultural del municipio.</p>
+      </div>
+
+      <div class="objetivos-cuadricula" data-aos="fade-up" data-aos-delay="200">
+        <div class="objetivo-item">
+          <div class="objetivo-item__numero">01</div>
+          <div class="objetivo-item__icono">🗺️</div>
+          <div class="objetivo-item__texto">Identificar y seleccionar los principales sitios turísticos y culturales del municipio de Aguachica.</div>
+        </div>
+        <div class="objetivo-item">
+          <div class="objetivo-item__numero">02</div>
+          <div class="objetivo-item__icono">🧊</div>
+          <div class="objetivo-item__texto">Modelar en 3D espacios representativos como el Parque San Roque y Parque Morrocoy utilizando Blender.</div>
+        </div>
+        <div class="objetivo-item">
+          <div class="objetivo-item__numero">03</div>
+          <div class="objetivo-item__icono">🌐</div>
+          <div class="objetivo-item__texto">Implementar recorridos virtuales 360° utilizando tecnologías modernas compatibles con la web.</div>
+        </div>
+        <div class="objetivo-item">
+          <div class="objetivo-item__numero">04</div>
+          <div class="objetivo-item__icono">📱</div>
+          <div class="objetivo-item__texto">Diseñar un sistema de navegación accesible desde códigos QR instalados en puntos clave del municipio.</div>
+        </div>
+        <div class="objetivo-item">
+          <div class="objetivo-item__numero">05</div>
+          <div class="objetivo-item__icono">🎓</div>
+          <div class="objetivo-item__texto">Promover el uso de herramientas como Blender y software de desarrollo web en la promoción turística local.</div>
+        </div>
+        <div class="objetivo-item">
+          <div class="objetivo-item__numero">06</div>
+          <div class="objetivo-item__icono">🏛️</div>
+          <div class="objetivo-item__texto">Preservar digitalmente el patrimonio histórico y cultural de Aguachica para futuras generaciones.</div>
+        </div>
+      </div>
+
     </div>
-  </div>
-</footer>
- 
-<!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 900, once: false, offset: 80 });
- 
-  /* Custom cursor */
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
- 
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
-  });
- 
-  (function animateRing() {
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
-    ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  })();
- 
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width = '56px'; ring.style.height = '56px'; ring.style.opacity = '0.3';
+  </section>
+
+
+  <!-- Tour QR -->
+  <section id="qr">
+    <div class="container" style="position:relative; z-index:1;">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-5" data-aos="fade-right">
+          <p class="seccion-etiqueta">Experiencia Inmersiva</p>
+          <h2 class="seccion-titulo">Tour 360°<br>& Modelos 3D</h2>
+          <div class="seccion-divisor"></div>
+          <p style="color:#666; font-size:0.95rem; line-height:1.8;">
+            Accede a la experiencia completa: recorridos virtuales panorámicos y modelos 3D interactivos de los lugares más representativos de Aguachica. Disponible desde cualquier dispositivo.
+          </p>
+        </div>
+
+        <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
+          <div class="tarjeta-qr">
+            <div class="tarjeta-qr__imagen-contenedor">
+              <img src="img/codigoQR.jpg" alt="Código QR Tour Virtual" />
+            </div>
+            <div class="tarjeta-qr__info">
+              <h3>Escanea y Explora</h3>
+              <p>Apunta tu cámara al código QR para comenzar el tour virtual inmersivo, o haz clic en el botón para acceder directamente desde el navegador.</p>
+              <a href="modelos.html" target="_blank" rel="noopener" class="btn-tour">
+                Ver Tour Virtual
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <div class="container">
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center" data-aos="fade-up">
+          <p class="seccion-etiqueta">Escríbenos</p>
+          <h2 class="seccion-titulo">Contáctanos</h2>
+          <div class="seccion-divisor seccion-divisor--centrado"></div>
+        </div>
+      </div>
+
+      <div class="contacto-contenedor" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="contacto-info">
+          <h3>¿Tienes alguna<br>pregunta?</h3>
+          <p>Estamos construyendo una experiencia digital única para Aguachica. Si tienes sugerencias, quieres colaborar o simplemente quieres saber más sobre el proyecto, escríbenos.</p>
+          <div class="contacto-detalle">
+            <div class="contacto-detalle__icono">📍</div>
+            <span>Aguachica, Cesar, Colombia</span>
+          </div>
+          <div class="contacto-detalle">
+            <div class="contacto-detalle__icono">🎓</div>
+            <span>Proyecto académico · 2025</span>
+          </div>
+          <div class="contacto-detalle">
+            <div class="contacto-detalle__icono">💻</div>
+            <span>Tecnologías: Blender · HTML · CSS · JS</span>
+          </div>
+        </div>
+
+        <div>
+          <form action="/contacto" method="POST">
+            <div class="campo-formulario">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="campo-formulario">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required />
+            </div>
+            <div class="campo-formulario">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí…" required></textarea>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar mensaje</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="pie-pagina">
+    <div class="container">
+      <div class="pie-pagina__superior">
+
+        <div class="pie-pagina__marca">
+          <img src="img/logo.png" alt="Logo Immersive Aguachica" />
+          <p>Turismo digital e inmersivo para Aguachica, Cesar. Preservando y promoviendo el patrimonio cultural a través de tecnología.</p>
+        </div>
+
+        <div class="pie-pagina__enlaces">
+          <h5>Navegación</h5>
+          <a href="#inicio">Inicio</a>
+          <a href="#lugares">Lugares</a>
+          <a href="#objetivos">Proyecto</a>
+          <a href="#qr">Tour 360°</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+
+        <div class="pie-pagina__enlaces">
+          <h5>Herramientas</h5>
+          <a href="modelos.html" target="_blank" rel="noopener">Modelos 3D</a>
+          <a href="#qr">Tour Virtual</a>
+          <a href="#qr">Código QR</a>
+        </div>
+
+      </div>
+      <div class="pie-pagina__inferior">
+        <p>© 2025 Immersive Aguachica · Todos los derechos reservados · Aguachica, Cesar, Colombia</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+
+    /* Animaciones al hacer scroll */
+    AOS.init({ duration: 900, once: false, offset: 80 });
+
+
+    /* Cursor personalizado */
+    const punto  = document.getElementById('cursorPunto');
+    const anillo = document.getElementById('cursorAnillo');
+    let mouseX = 0, mouseY = 0, anilloX = 0, anilloY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      punto.style.left = mouseX + 'px';
+      punto.style.top  = mouseY + 'px';
     });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '0.5';
+
+    (function moverAnillo() {
+      anilloX += (mouseX - anilloX) * 0.12;
+      anilloY += (mouseY - anilloY) * 0.12;
+      anillo.style.left = anilloX + 'px';
+      anillo.style.top  = anilloY + 'px';
+      requestAnimationFrame(moverAnillo);
+    })();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        anillo.style.width   = '56px';
+        anillo.style.height  = '56px';
+        anillo.style.opacity = '0.3';
+      });
+      el.addEventListener('mouseleave', () => {
+        anillo.style.width   = '36px';
+        anillo.style.height  = '36px';
+        anillo.style.opacity = '0.5';
+      });
     });
-  });
- 
-  /* Navbar shrink on scroll */
-  const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    navbar.style.boxShadow = window.scrollY > 30
-      ? '0 4px 24px rgba(0,0,0,0.10)'
-      : 'none';
-  });
-</script>
+
+
+    /* Sombra en la barra de navegación al hacer scroll */
+    const barraNav = document.querySelector('.barra-nav');
+    window.addEventListener('scroll', () => {
+      barraNav.style.boxShadow = window.scrollY > 30
+        ? '0 4px 24px rgba(0,0,0,0.10)'
+        : 'none';
+    });
+
+  </script>
+
 </body>
 </html>
